@@ -1,0 +1,23 @@
+{
+   "data-base-config": {
+      "host": "localhost",
+      "port": 3306,
+      "user": "root",
+      "password": "root",
+      "database": "cab_shop"
+   },
+   "api-config": {
+      "port": "8080",
+      "login": "root",
+      "password": "root",
+      "email": "otto.muller.general@gmail.com",
+      "secret": "sdFSfs2fsfsfgsaxv",
+      "emailPass": "123",
+      "clientAdress": ""
+   },
+   "payment-config": {
+      "clientId": "example",
+      "clientSecret": "something",
+      "currency": "USD"
+   }
+}
