@@ -1,0 +1,233 @@
+This is rest-api for cab shop
+So, It has:
+    - ./api-config.json with configuration of api, database, payment for PayPal
+    - ./models with models of data:
+        - OnebindedLinear.js is model of onebinded linear list for ->
+        -> Branch.js - is a model of a tree
+        - Datatrans.js - converting of information about product for user
+    - ./controllers
+        - api.js for set or get api configuration --> ./api-config.json
+        - json.js for write or read json files
+        - jwt.js for encoding or decoding or json web tokens
+        - mailer.js for sending letters
+        - mysql.js for working with mysql server
+        - payment.js is amodule for payment in PayPal
+        - routes.js routes of api
+To use this api like a client you may use simple webtokens, for some requests use cookie Auth, Admin-auth
+ - /admin/get/users --> token contains: POST:
+    {
+        login: string
+        password: string
+    }
+ - /admin/get/basketItem --> token contains: POST:
+    {
+        login: string
+        password: string
+        id: string
+    }
+ - /admin/get/listItem --> token contains: POST:
+    {
+        login: string
+        password: string
+        id: string
+    }
+ - /admin/get/config --> head (Admin-auth) contains: POST:
+    {
+        login: string
+        password: string
+    }
+        --> returns cookie
+ - /admin/set/category --> token contains: POST:
+    {
+        login: string
+        password: string
+        categoryId: string
+        categoryName: string
+        template: json
+    }
+ - /admin/set/product --> token contains: POST:
+    {
+        login: string
+        password: string
+        code: string
+        description: json
+        categoryId: string
+        count: int
+    }
+ - /admin/set/component --> token contains: POST:
+    {
+        login: string
+        password: string
+        code: string
+        description: json
+        productCode: string
+        article: string
+        count: int
+    }
+ - /admin/change/category --> token contains: POST:
+    {
+        login: string
+        password: string
+        id: string
+        name: string
+        template: json
+    }
+ - /admin/change/product --> token contains: POST:
+    {
+        login: string
+        password: string
+        code: string
+        description: json
+        categoryId: string
+        count: int
+    }
+ - /admin/change/component --> token contains: POST:
+    {
+        login: string
+        password: string
+        code: string
+        description: json
+        productCode: string
+        article: string
+        count: int
+    }
+ - /admin/change/payment --> token contains: POST:
+    {
+        login: string
+        password: string
+        clientId: string
+        clientSecret: string
+        currency: string
+    }
+ - /admin/change/config/api --> token contains: POST:
+    {
+        login: string
+        password: string
+        secret: string
+        port: int
+        newLogin: string
+        newPassword: string
+        email: string
+        emailPass: string
+        adress: string
+    }
+ - /admin/change/config/database --> token contains: POST:
+    {
+        login: string
+        password: string
+        host: string
+        port: int
+        databaseUser: string
+        databasePassword: string
+        database: string
+    }
+ - /admin/delete/user --> token contains: POST:
+    {
+        login: string
+        password: string
+        id: string
+    }
+ - /admin/delete/category --> token contains: POST:
+    {
+        login: string
+        password: string
+        id: string
+    }
+ - /admin/delete/product --> token contains: POST:
+    {
+        login: string
+        password: string
+        code: string
+    }
+ - /admin/delete/component --> token contains: POST:
+    {
+        login: string
+        password: string
+        code: string
+    }
+ - /admin/delete/review --> token contains: POST:
+    {
+        login: string
+        password: string
+        code: string
+        id: string
+    }
+ - /user/get/basketItem --> token contains: POST:
+    {
+        id: string
+        password: string
+    }
+ - /user/get/listItem --> token contains: POST:
+    {
+        id: string
+        password: string
+    }
+ - /user/get/checkme --> header (Auth) contains: POST:
+    {
+        id: string
+        password: string
+    }
+        --> returns cookie
+ - /user/get/viewme --> token contains: POST:
+    {
+        id: string
+        password: string
+    }
+ - /user/set/basketItem --> token contains: POST:
+    {
+        id: string
+        password: string
+        code: string 
+        count: int 
+    }
+ - /user/set/review --> token contains: POST:
+    {
+        id: string
+        password: string
+        code: string
+        review: string
+    }
+ - /user/set/basketItemChange --> token contains:
+    {
+        id: string
+        basketId: int
+        password: string
+        code: string
+        count: string
+    }
+ - /user/delete/myself --> token contains: POST:
+    {
+        id: string
+        password: string
+    }
+ - /user/delete/basketItem --> token contains: POST:
+    {
+        id: string
+        password: string
+        code: string
+        basketId: int
+    }
+ - /user/delete/listItem --> token contains: POST:
+    {
+        id: string
+        password: string
+        code: string
+        orderId: int
+    }
+ - /user/buy --> token contains: POST:
+    {
+        id: string
+        password: string
+        code: string
+        idBasket: int
+    }
+ - /public/auth --> body contains: POST:
+    id: string
+    name: string
+    password: string
+    email: string
+        --> returns cookie
+ - /public/get/category --> GET:
+ - /public/get/product --> GET:
+ - /public/get/component --> GET:
+ - /public/get/review --> GET:
