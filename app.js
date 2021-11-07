@@ -1,11 +1,15 @@
 import * as api from './controllers/api.js'
 import * as routes from './controllers/routes.js'
 import express from 'express'
+import cors from 'cors'
 
 //initialising app
 const app = express()
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
+app.use(cors({
+    origin: '*'
+}))
 
 let admin = routes.tree.getLeaveBy(0).folder
 let user = routes.tree.getLeaveBy(1).folder
